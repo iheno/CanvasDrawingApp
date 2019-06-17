@@ -1,6 +1,7 @@
 const canvas = document.getElementById("jsCanvas");
 const ctx = canvas.getContext("2d");
 const colors = document.getElementsByClassName("jsColor");
+const range = document.getElementById("jsRange");
 
 canvas.width = 640;
 canvas.height = 640;
@@ -40,6 +41,12 @@ function handleColorClick(event) {
   ctx.strokeStyle = color;
 }
 
+function handleRangeChange(event) {
+  //console.log(event.target.value);
+  const size = event.target.value;
+  ctx.lineWidth = size;
+}
+
 // check 
 if (canvas) {
   canvas.addEventListener("mousemove", onMouseMove);
@@ -51,5 +58,10 @@ if (canvas) {
 // 각 아이템을 배열로 만들고 클릭 이벤트 추가
 Array.from(colors).forEach(color => 
   color.addEventListener("click", handleColorClick)
-  );
-//console.log(Array.from(colors));
+);
+  //console.log(Array.from(colors));s
+
+
+if(range){
+  range.addEventListener("input", handleRangeChange);
+}
