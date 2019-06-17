@@ -4,10 +4,14 @@ const colors = document.getElementsByClassName("jsColor");
 const range = document.getElementById("jsRange");
 const mode = document.getElementById("jsMode");
 
-canvas.width = 640;
-canvas.height = 640;
+const INITIAL_COLOR = "#2c2c2c";
+const CANVAS_SIZE = 700;
 
-ctx.strokeStyle = "#2c2c2c";
+canvas.width = CANVAS_SIZE;
+canvas.height = CANVAS_SIZE;
+
+ctx.strokeStyle = INITIAL_COLOR;
+ctx.fillStyle = INITIAL_COLOR;
 ctx.lineWidth = 2.5;
 
 let painting = false;
@@ -41,6 +45,7 @@ function handleColorClick(event) {
   //console.log(event.target.style);
   const color = event.target.style.backgroundColor;
   ctx.strokeStyle = color;
+  ctx.fillStyle = color;
 }
 
 function handleRangeChange(event) {
@@ -49,13 +54,19 @@ function handleRangeChange(event) {
   ctx.lineWidth = size;
 }
  
-function handleModeClick() {
+function handleModeClick() { 
   if(filling === true){
     filling = false;
     mode.innerText = "Fill";
   } else {
-    filling === true;
+    filling = true;
     mode.innerText = "Paint";
+  }
+}
+
+function handleCanvasClick() {
+  if(filling){
+    ctx.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
   }
 }
 
@@ -64,7 +75,8 @@ if (canvas) {
   canvas.addEventListener("mousemove", onMouseMove);
   canvas.addEventListener("mousedown", startPainting); // 클릭했을때 발생하는 이벤트
   canvas.addEventListener("mouseup", stopPainting); // 클릭을 뗴었을때 이벤트
-  canvas.addEventListener("mouseleave", stopPainting) // 클릭 범위를 벗어났을때 이벤트
+  canvas.addEventListener("mouseleave", stopPainting); // 클릭 범위를 벗어났을때 이벤트
+  canvas.addEventListener("click", handleCanvasClick);
 }  
 
 // 각 아이템을 배열로 만들고 클릭 이벤트 추가
