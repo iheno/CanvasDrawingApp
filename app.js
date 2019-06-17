@@ -74,6 +74,11 @@ function handleCanvasClick() {
   }
 }
 
+// 마우스 우클릭 방지
+function handleCM(event) {
+  event.preventDefault();
+}
+
 // check 
 if (canvas) {
   canvas.addEventListener("mousemove", onMouseMove);
@@ -81,6 +86,8 @@ if (canvas) {
   canvas.addEventListener("mouseup", stopPainting); // 클릭을 뗴었을때 이벤트
   canvas.addEventListener("mouseleave", stopPainting); // 클릭 범위를 벗어났을때 이벤트
   canvas.addEventListener("click", handleCanvasClick);
+  //contextmenu hidden
+  canvas.addEventListener("contextmenu", handleCM);
 }  
 
 // 각 아이템을 배열로 만들고 클릭 이벤트 추가
