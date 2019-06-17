@@ -10,6 +10,10 @@ const CANVAS_SIZE = 700;
 canvas.width = CANVAS_SIZE;
 canvas.height = CANVAS_SIZE;
 
+//Canvas 기본 배경 색상 설정
+ctx.fillStyle = "#ffffff";
+ctx.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
+
 ctx.strokeStyle = INITIAL_COLOR;
 ctx.fillStyle = INITIAL_COLOR;
 ctx.lineWidth = 2.5;
